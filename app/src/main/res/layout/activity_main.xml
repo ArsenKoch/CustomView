@@ -10,7 +10,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:bottomNegativeButtonText="@string/cancel"
-        app:bottomPositiveButtonText="@string/ok"
+        app:bottomPositiveButtonColor="#11D618"
+        app:bottomPositiveButtonText="Apply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
