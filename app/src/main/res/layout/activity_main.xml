@@ -7,10 +7,11 @@
     tools:context=".MainActivity">
 
     <com.example.customview.BottomButtonsView
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:bottomNegativeButtonText="@string/cancel"
-        app:bottomPositiveButtonColor="#11D618"
+        app:bottomPositiveButtonColor="#008800"
         app:bottomPositiveButtonText="Apply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

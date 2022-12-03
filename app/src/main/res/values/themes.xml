@@ -14,9 +14,24 @@
         <!-- Customize your theme here. -->
 
         <item name="materialButtonStyle">@style/MyButtonStyle</item>
+
+        <item name="bottomButtonStyle">@style/DefaultMyButtonStyle</item>
     </style>
 
     <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:textAllCaps">false</item>
     </style>
+    
+    <style name="ConcreteMyButtonMyStyle">
+        <item name="bottomPositiveButtonText">#ffff</item>
+    </style>
+
+    <style name="DefaultMyButtonStyle">
+        <item name="bottomNegativeButtonText">#ffff</item>
+    </style>
+
+    <style name="MyBottomButtonStyle">
+        <item name="bottomNegativeButtonText">#ffff22</item>
+    </style>
+
 </resources>

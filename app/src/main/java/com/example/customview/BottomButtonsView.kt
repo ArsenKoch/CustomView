@@ -15,14 +15,7 @@ class BottomButtonsView(
     defStyleRes: Int
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val binding: PartButtonsBinding
-
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
-        context, attrs, defStyleAttr, defStyleRes = 0
-    )
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context) : this(context, null)
+    private var binding: PartButtonsBinding
 
     init {
         val inflater = LayoutInflater.from(context)
@@ -30,6 +23,18 @@ class BottomButtonsView(
         binding = PartButtonsBinding.bind(this)
         initialize(attrs, defStyleAttr, defStyleRes)
     }
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
+        context, attrs, defStyleAttr, defStyleRes = R.attr.bottomButtonStyle
+    )
+
+    constructor(context: Context, attrs: AttributeSet?) : this(
+        context,
+        attrs,
+        R.style.MyBottomButtonStyle
+    )
+
+    constructor(context: Context) : this(context, null)
 
     private fun initialize(attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) {
         if (attrs == null) return
@@ -48,13 +53,20 @@ class BottomButtonsView(
             typedArray.getString(R.styleable.BottomButtonsView_bottomNegativeButtonText)
         binding.buttonNegative.text = negativeButtonText ?: "Cancel"
 
-        val positiveButtonColor = typedArray.getColor(R.styleable.BottomButtonsView_bottomPositiveButtonColor,Color.WHITE)
+        val positiveButtonColor = typedArray.getColor(
+            R.styleable.BottomButtonsView_bottomPositiveButtonColor,
+            Color.WHITE
+        )
         binding.buttonPositive.backgroundTintList = ColorStateList.valueOf(positiveButtonColor)
 
-        val negativeButtonColor = typedArray.getColor(R.styleable.BottomButtonsView_bottomNegativeButtonColor,Color.BLACK)
+        val negativeButtonColor = typedArray.getColor(
+            R.styleable.BottomButtonsView_bottomNegativeButtonColor,
+            Color.BLACK
+        )
         binding.buttonNegative.backgroundTintList = ColorStateList.valueOf(negativeButtonColor)
 
-        val isProgressMode = typedArray.getBoolean(R.styleable.BottomButtonsView_bottomProgressMode,false)
+        val isProgressMode =
+            typedArray.getBoolean(R.styleable.BottomButtonsView_bottomProgressMode, false)
         if (isProgressMode) {
             binding.buttonPositive.visibility = INVISIBLE
             binding.buttonNegative.visibility = INVISIBLE
@@ -65,9 +77,6 @@ class BottomButtonsView(
             binding.progressBar.visibility = GONE
         }
 
-
-
         typedArray.recycle()
-
     }
 }
