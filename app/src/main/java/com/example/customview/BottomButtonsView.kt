@@ -8,6 +8,12 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.customview.databinding.PartButtonsBinding
 
+enum class BottomButtonActions {
+    POSITIVE, NEGATIVE
+}
+
+typealias OnBottomButtonsActionListener = (BottomButtonActions) -> Unit
+
 class BottomButtonsView(
     context: Context,
     attrs: AttributeSet?,
@@ -17,11 +23,14 @@ class BottomButtonsView(
 
     private var binding: PartButtonsBinding
 
+    private var listener: OnBottomButtonsActionListener? = null
+
     init {
         val inflater = LayoutInflater.from(context)
         inflater.inflate(R.layout.part_buttons, this, true)
         binding = PartButtonsBinding.bind(this)
         initialize(attrs, defStyleAttr, defStyleRes)
+        initListener()
     }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : this(
@@ -78,5 +87,18 @@ class BottomButtonsView(
         }
 
         typedArray.recycle()
+    }
+
+    private fun initListener() {
+        binding.buttonPositive.setOnClickListener {
+            this.listener?.invoke(BottomButtonActions.POSITIVE)
+        }
+        binding.buttonNegative.setOnClickListener {
+            this.listener?.invoke(BottomButtonActions.NEGATIVE)
+        }
+    }
+
+    fun setListener(listener: OnBottomButtonsActionListener?) {
+        this.listener = listener
     }
 }
