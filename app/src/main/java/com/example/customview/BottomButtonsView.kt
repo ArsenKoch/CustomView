@@ -23,6 +23,20 @@ class BottomButtonsView(
 
     private var binding: PartButtonsBinding
 
+    private var isProgressMode: Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                binding.buttonPositive.visibility = INVISIBLE
+                binding.buttonNegative.visibility = INVISIBLE
+                binding.progressBar.visibility = VISIBLE
+            } else {
+                binding.buttonPositive.visibility = VISIBLE
+                binding.buttonNegative.visibility = VISIBLE
+                binding.progressBar.visibility = GONE
+            }
+        }
+
     private var listener: OnBottomButtonsActionListener? = null
 
     init {
@@ -56,11 +70,11 @@ class BottomButtonsView(
 
         val positiveButtonText =
             typedArray.getString(R.styleable.BottomButtonsView_bottomPositiveButtonText)
-        binding.buttonPositive.text = positiveButtonText ?: "Ok"
+        setPositiveButtonText(positiveButtonText)
 
         val negativeButtonText =
             typedArray.getString(R.styleable.BottomButtonsView_bottomNegativeButtonText)
-        binding.buttonNegative.text = negativeButtonText ?: "Cancel"
+        setNegativeButtonText(negativeButtonText)
 
         val positiveButtonColor = typedArray.getColor(
             R.styleable.BottomButtonsView_bottomPositiveButtonColor,
@@ -74,17 +88,9 @@ class BottomButtonsView(
         )
         binding.buttonNegative.backgroundTintList = ColorStateList.valueOf(negativeButtonColor)
 
-        val isProgressMode =
+        isProgressMode =
             typedArray.getBoolean(R.styleable.BottomButtonsView_bottomProgressMode, false)
-        if (isProgressMode) {
-            binding.buttonPositive.visibility = INVISIBLE
-            binding.buttonNegative.visibility = INVISIBLE
-            binding.progressBar.visibility = VISIBLE
-        } else {
-            binding.buttonPositive.visibility = VISIBLE
-            binding.buttonNegative.visibility = VISIBLE
-            binding.progressBar.visibility = GONE
-        }
+
 
         typedArray.recycle()
     }
@@ -100,5 +106,13 @@ class BottomButtonsView(
 
     fun setListener(listener: OnBottomButtonsActionListener?) {
         this.listener = listener
+    }
+
+    fun setPositiveButtonText(text: String?) {
+        binding.buttonPositive.text = text ?: "Ok"
+    }
+
+    fun setNegativeButtonText(text: String?) {
+        binding.buttonNegative.text = text ?: "Cancel"
     }
 }
