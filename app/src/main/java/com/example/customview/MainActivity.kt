@@ -21,12 +21,12 @@ class MainActivity : AppCompatActivity() {
             if (it == BottomButtonActions.POSITIVE) {
 
                 binding.bottomButton.setPositiveButtonText("Update Apply")
-                Toast.makeText(this, "You touch positive button!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.positive_btn, Toast.LENGTH_SHORT).show()
 
             } else if (it == BottomButtonActions.NEGATIVE) {
 
                 binding.bottomButton.setNegativeButtonText("Update Cancel")
-                Toast.makeText(this, "You touch negative button!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.negative_btn, Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">CustomView</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+
+    <string name="positive_btn">You touch positive button!</string>
+    <string name="negative_btn">You touch negative button!</string>
 </resources>
